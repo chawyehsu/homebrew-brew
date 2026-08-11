@@ -1,5 +1,5 @@
 class Moonup < Formula
-  version "0.5.2"
+  version "0.6.0"
   desc "Manage multiple MoonBit installations"
   homepage "https://github.com/chawyehsu/moonup"
   license "Apache-2.0"
@@ -12,17 +12,17 @@ class Moonup < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/chawyehsu/moonup/releases/download/v#{version}/moonup-aarch64-apple-darwin.tar.gz"
-      sha256 "5f4a95e8a0351c894987943950cc0c635fbb0888d381cb74e4ee6723986dce78"
+      sha256 "8b471cab3a32a25b6d84f48aa58f35aad56d3993351841cdaabbaa1a507d8736"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/chawyehsu/moonup/releases/download/v#{version}/moonup-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "c742637f11840dde39a69edac217623fe0a7095d93435da54a2b705d4552b631"
+      sha256 "f61ca8a557c67930027e618695d1d71801c273b796863c166cff1282c0cd6a6b"
     else
       url "https://github.com/chawyehsu/moonup/releases/download/v#{version}/moonup-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "f00df7aa43f7f5706f9114040eef2abde9ff1774f10a3a69487dcec0f10b5ae0"
+      sha256 "08bbc8078aebe7e892af32ed3fe69f8b5d3dd911f673702af001cf966c212fda"
     end
   end
 
