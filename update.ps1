@@ -69,11 +69,13 @@ function Get-Checksum {
 
     $tempDir = [System.IO.Path]::GetTempPath()
     $tempFile = Join-Path $tempDir "download_$(Get-Random)"
+    $client = $null
 
     try {
         Write-Host "    Downloading: $Url"
-        $ProgressPreference = 'SilentlyContinue'
-        Invoke-WebRequest -Uri $Url -OutFile $tempFile -Headers @{ "User-Agent" = "PowerShell" } -TimeoutSec 60
+        $client = [System.Net.WebClient]::new()
+        $client.Headers['User-Agent'] = 'PowerShell'
+        $client.DownloadFile($Url, $tempFile)
 
         $hash = Get-FileHash -Path $tempFile -Algorithm SHA256
         $checksum = $hash.Hash.ToLower()
@@ -85,6 +87,8 @@ function Get-Checksum {
         return $null
     }
     finally {
+        if ($client) { $client.Dispose() }
+
         if (Test-Path $tempFile) {
             Remove-Item $tempFile -Force
         }
